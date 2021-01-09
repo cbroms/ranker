@@ -1,50 +1,42 @@
-<script>
-	import successkid from 'images/successkid.jpg';
+<script context="module">
+	export async function preload(page, session) {
+
+		const api = session.api;
+		const res = await this.fetch(`${api}/sample`);
+
+		if (res.status === 200) {
+			const json = await res.json();
+			return { json, api };
+		}
+
+		this.error(json.status);
+	}
 </script>
 
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+<script>
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+	import { post } from "../api/remote"
+	import { goto } from "@sapper/app"
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+	export let json;
+	export let api;
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
+	const onClick = async (which) => {
 
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
+		// vote 
+		const res = await post(`${api}/vote`, {id: which});
+		
+		// if (res === 200) goto("/ranking")
+		await goto("/ranking")
+	}	
+</script>
 
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>Index</title>
 </svelte:head>
 
-<h1>Great success!</h1>
-
-<figure>
-	<img alt="Success Kid" src="{successkid}">
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<div>{JSON.stringify(json)}</div>
+<div>
+	<button on:click={() => onClick(1)}>One</button>
+	<button on:click={() => onClick(2)}>Two</button>
+</div>
