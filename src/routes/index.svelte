@@ -14,20 +14,18 @@
 </script>
 
 <script>
+	import { goto } from "@sapper/app"
 
 	import { post } from "../api/remote"
-	import { goto } from "@sapper/app"
+	import { voted } from "../stores/voted"
 
 	export let json;
 	export let api;
 
 	const onClick = async (which) => {
-
-		// vote 
-		const res = await post(`${api}/vote`, {id: which});
-		
-		// if (res === 200) goto("/ranking")
-		await goto("/ranking")
+		await post(`${api}/vote`, {id: which});
+		voted.addVote(which)
+		await goto("/ranking/0/")
 	}	
 </script>
 
@@ -35,8 +33,8 @@
 	<title>Index</title>
 </svelte:head>
 
-<div>{JSON.stringify(json)}</div>
 <div>
-	<button on:click={() => onClick(1)}>One</button>
-	<button on:click={() => onClick(2)}>Two</button>
+	<h1>Which?</h1>
+	<button on:click={() => onClick(json.thing1._id)}>{json.thing1.content}</button>
+	<button on:click={() => onClick(json.thing2._id)}>{json.thing2.content}</button>
 </div>
