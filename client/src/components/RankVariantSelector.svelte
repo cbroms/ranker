@@ -22,7 +22,7 @@
     };
 </script>
 
-<select bind:value="{selected}" on:change="{changedValue}">
+<select bind:value="{selected}" on:blur="{changedValue}">
     {#each options as option}
     <option
         value="{option}"
