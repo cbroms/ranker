@@ -2,21 +2,12 @@
 
 Ranking stuff.
 
-```
-npm install
-npm run dev
-```
+The client is built with Sapper (svelte.js) and the backend is a Polka (node.js) server.
 
-Or you can run the API and client separately:
-
-Run the Sapper project:
+You can run both the client and server in development mode with docker:
 
 ```
-npm run sapper-dev
+docker-compose up
 ```
 
-Run the API server:
-
-```
-npm run api-dev
-```
+Changes made the the source of either the client or server will be hot reloaded in their respective docker containers.

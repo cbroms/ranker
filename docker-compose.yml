@@ -1,0 +1,26 @@
+version: "3"
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./client.Dockerfile
+    ports:
+      - "3000:3000"
+      - "10000:10000"
+    environment:
+      API_CONN: http://localhost:5000
+    working_dir: /client
+    volumes:
+      - ./client:/client:cached
+    network_mode: "host"
+  server:
+    build:
+      context: .
+      dockerfile: ./server.Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    working_dir: /server
+    volumes:
+      - ./server:/server:cached

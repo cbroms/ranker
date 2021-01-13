@@ -61,3 +61,4 @@
 {/each}
 
 <button on:click={() => goto("/add")}>Add one</button>
+<button on:click={() => goto(`/ranking/${parseInt(num) + 1}/`)}>Next Page</button>

@@ -1,29 +1,23 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "ranker-client",
+  "description": "The Svelte/Sapper client for ranker.",
+  "repository": "https://github.com/cbroms/ranker.git",
   "version": "0.0.1",
   "scripts": {
-    "sapper-dev": "sapper dev",
-    "api-dev": "nodemon server.js",
-    "dev": "concurrently \"npm:sapper-dev\" \"npm:api-dev\"",
+    "dev": "sapper dev --no-hot",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
     "compression": "^1.7.1",
-    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "mongodb": "^3.6.3",
-    "mongodb-client-encryption": "^1.1.0",
     "polka": "next",
     "sirv": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
     "file-loader": "^6.0.0",
-    "nodemon": "^2.0.7",
     "sapper": "^0.28.0",
     "svelte": "^3.17.3",
     "svelte-loader": "^2.9.0",
