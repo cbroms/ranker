@@ -13,16 +13,20 @@
     const changedValue = () => {
         switch (selected.id) {
             case 1:
-                goto("/ranking/overused/0/");
+                goto("/overused/");
                 break;
             case 2:
-                goto("/ranking/underused/0/");
+                goto("/underused/");
                 break;
         }
     };
 </script>
 
-<select bind:value="{selected}" on:blur="{changedValue}">
+<select
+    bind:value="{selected}"
+    on:change="{changedValue}"
+    on:blur="{changedValue}"
+>
     {#each options as option}
     <option
         value="{option}"
@@ -32,3 +36,21 @@
     </option>
     {/each}
 </select>
+
+<style>
+
+    select {
+        font-size: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 0px;
+        border: none;
+        border-bottom: 1px solid white;
+        color: white;
+        padding-right: 1.5rem;
+    }
+</style>

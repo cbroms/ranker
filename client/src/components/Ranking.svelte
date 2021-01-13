@@ -24,13 +24,14 @@
 	}
 
     .overused {
-        background-color: indianred;
+        background-color: #D35B5B;
     }
 
 	header {
 		padding: 20px;
 		border-bottom: 1px solid black;
-        background-color: teal;
+        background-color: #79B95C;
+        color: white;
 	}
 
 	main {

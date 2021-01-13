@@ -8,7 +8,7 @@
 
 <script>
 
-	import { post } from "../../../api/remote"
+	import { post } from "../../api/remote"
 	import { goto } from "@sapper/app"
 
 	export let api;
@@ -19,7 +19,7 @@
 	const onSubmit = async () => {
 		if (content !== "") {
 			await post(`${api}/new`, {content: content})
-			await goto("/ranking/0/")
+			goto("/ranking/0/")
 		}
 	}
 

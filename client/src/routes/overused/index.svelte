@@ -1,7 +1,7 @@
 <script context="module">
 	export async function preload(page, session) {
 		// this is the results page that's been paginated, so we have a num parameter
-		const { num } = page.params;
+		const num = page.query.page || 0
 		const api = session.api
 
 		// get that page's results
@@ -20,12 +20,12 @@
 	import { goto } from "@sapper/app";
 	import { onMount } from "svelte"
 
-	import { voted } from "../../../stores/voted"
-	import { getVotedIds } from "../../../api/local"
-	import { post } from "../../../api/remote"
+	import { voted } from "../../stores/voted"
+	import { getVotedIds } from "../../api/local"
+	import { post } from "../../api/remote"
 
-	import Ranking from "../../../components/Ranking.svelte"
-	import RankVariantSelector from "../../../components/RankVariantSelector.svelte"
+	import Ranking from "../../components/Ranking.svelte"
+	import RankHeader from "../../components/RankHeader.svelte"
 
 	export let json;
 	export let num;
@@ -53,8 +53,7 @@
 
 <Ranking overused >
 	<span slot="header">
-		<RankVariantSelector overused />
-		<button on:click={() => goto("ranking/overused/add")}>Add one</button>
+	 	<RankHeader overused addFunc={() => goto("/overused/add/")}/>
 	</span>
 	<span slot="ranking">
 		{#each json.items as item}
@@ -69,6 +68,7 @@
 		{/each}
 	</span>
 	<span slot="footer">
-		<button on:click={() => goto(`/ranking/${parseInt(num) + 1}/`)}>Next Page</button>
+		<button on:click={() => goto(`/overused/?page=${parseInt(num) + 1}`)}>Next Page</button>
 	</span>
 </Ranking>
+
