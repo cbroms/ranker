@@ -5,14 +5,14 @@
 </script>
 
 <span class="footer">
-    {#if prevFunc !== null}
-    <button on:click="{prevFunc}">&larr; Prev page</button>
-    {:else}
-    <span />
-    {/if}
+    <button on:click="{randomFunc}">Random phrase</button>
     <span>
-        <button on:click="{randomFunc}">Random</button>
-        <button on:click="{nextFunc}">Next page &rarr;</button>
+        {#if prevFunc !== null}
+        <button on:click="{prevFunc}" class="previous">
+            &lsaquo; Prev page
+        </button>
+        {/if}
+        <button on:click="{nextFunc}">Next page &rsaquo;</button>
     </span>
 </span>
 
@@ -20,5 +20,9 @@
     .footer {
         display: flex;
         justify-content: space-between;
+    }
+
+    .previous {
+        margin-right: 15px;
     }
 </style>

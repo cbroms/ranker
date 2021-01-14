@@ -4,20 +4,18 @@
     export let overused = false;
 
     const options = [
-        { text: "hear too much", id: 1 },
-        { text: "hear too little", id: 2 },
+        { text: "too much", id: 1 },
+        { text: "too little", id: 2 },
     ];
 
     let selected;
 
     const changedValue = () => {
-        switch (selected.id) {
-            case 1:
-                goto("/overused/");
-                break;
-            case 2:
-                goto("/underused/");
-                break;
+
+        if (selected.id === 1) {
+            goto("/overused/");
+        } else {
+            goto("/underused/");
         }
     };
 </script>
@@ -40,7 +38,6 @@
 <style>
 
     select {
-        font-family: monospace;
         font-size: inherit;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -48,7 +45,7 @@
         background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
         background-repeat: no-repeat;
         background-position-x: 100%;
-        background-position-y: 0px;
+        background-position-y: 5px;
         border: none;
         border-bottom: 1px solid white;
         color: white;

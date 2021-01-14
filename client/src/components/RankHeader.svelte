@@ -6,9 +6,7 @@
 </script>
 
 <span class="header">
-    <span class="header-title"
-        >Phrases we <RankVariantSelector overused="{overused}"
-    /></span>
+    <h1>Phrases we use <RankVariantSelector overused="{overused}" /></h1>
     <button on:click="{addFunc}">+ Add a phrase</button>
 </span>
 
@@ -16,10 +14,6 @@
     .header {
         display: flex;
         justify-content: space-between;
-    }
-
-    .header-title {
-        font-size: 1.25rem;
     }
 
     button {

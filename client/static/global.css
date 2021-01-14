@@ -1,7 +1,13 @@
+@font-face {
+	font-family: Virtue;
+	src: url(virtue.ttf);
+}
+
 body {
 	font-size: 16px;
-	font-family: monospace;
+	font-family: Virtue, sans-serif;
 	margin: 0;
+	color: #3f3f3f;
 	overflow-x: hidden;
 }
 
@@ -15,10 +21,28 @@ body {
 }
 
 button {
+	box-sizing: border-box;
 	background-color: inherit;
 	padding: 10px;
 	font-size: 1rem;
-	font-family: monospace;
+	font-family: Virtue, sans-serif;
 	border: 1px solid black;
 	cursor: pointer;
+}
+
+input {
+	box-sizing: border-box;
+	background-color: inherit;
+	padding: 10px;
+	font-size: 1rem;
+	font-family: Virtue, sans-serif;
+	border: 1px solid black;
+}
+
+select {
+	font-family: Virtue, sans-serif;
+}
+
+h1 {
+	margin: 5px 0;
 }

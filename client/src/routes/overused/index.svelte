@@ -57,17 +57,24 @@
 		<RankHeader overused addFunc={() => goto("/overused/add/")}/>
 	</span>
 	<span slot="ranking">
-		<p>Overused ranking goes here</p>
-		<!-- {#each json.items as item}
-			<div>
-				{#if $voted.includes(item._id)}
-			 	<span on:click={() => onUnvote(item._id)}>▲</span>
-			 	{:else}
-			 	<span on:click={() => onVote(item._id)}>△</span>
-			 	{/if}
-			 {item.content}
-			</div>
-		{/each} -->
+		<div class="items">
+			{#each json.items as item, i}
+				<div class="item" class:selected={$voted.includes(item._id)} class:first={i === 0}>
+					<div class="item-vote">
+						{#if $voted.includes(item._id)}
+					 	<span on:click={() => onUnvote(item._id)} 
+					 		  class="voted vote-box" 
+					 		  title={`remove your vote for the phrase "${item.content}"`}>✓</span>
+					 	{:else}
+					 	<span on:click={() => onVote(item._id)} 
+					 		class="unvoted vote-box" 
+					 		title={`add a vote for the phrase "${item.content}"`}></span>
+					 	{/if}
+					 </div>
+					 <div class="item-content">{item.content}</div>
+				</div>
+			{/each}
+		</div>
 	</span>
 	<span slot="footer">
 		<RankFooter nextFunc={() => goto(`/overused/?page=${parseInt(num) +
@@ -75,3 +82,48 @@
 		1}`) : null} randomFunc={() => goto("/overused/random")} />
 	</span>
 </Ranking>
+
+
+<style>
+	.items {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.item {
+		display: flex;
+		width: 100%;
+		margin: 10px;
+	}
+
+	.first {
+		font-size: 2rem;
+		margin: 20px 10px;
+	}
+
+	.item-vote {
+		cursor: pointer;
+		margin-right: 50px;
+		width: 23px;
+	}
+
+	.selected {
+		color: #D35B5B;
+	}
+
+	.vote-box {
+		box-sizing: border-box;
+		border: 1px solid;
+		width: 23px;
+		height: 23px;
+		display: inline-block;
+	}
+
+	.voted {
+		line-height: 10px;
+		font-family: monospace;
+		font-size: 50px;
+
+	}
+
+	
+</style>
