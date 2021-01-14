@@ -40,6 +40,7 @@
 <style>
 
     select {
+        font-family: monospace;
         font-size: inherit;
         -webkit-appearance: none;
         -moz-appearance: none;
