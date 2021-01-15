@@ -11,4 +11,4 @@
   export let api;
 </script>
 
-<Add type="overused" {api} />
+<Add type="underused" {api} />

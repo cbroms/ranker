@@ -1,77 +1,50 @@
 <script context="module">
-    export async function preload(page, session) {
-        // this is the results page that's been paginated, so we have a num parameter
-        const num = page.query.page || 0;
-        const api = session.api;
+  export async function preload(page, session) {
+    // this is the results page that's been paginated, so we have a num parameter
+    const num = parseInt(page.query.page || 0);
+    const api = session.api;
 
-        // get that page's results
-        const res = await this.fetch(`${api}/ranking/${num}`);
+    // get that page's results
+    const res = await this.fetch(`${api}/ranking/${num}?rankType=underused`);
 
-        if (res.status === 200) {
-            const json = await res.json();
-            return { json, api, num };
-        }
-
-        this.error(res.status);
+    if (res.status === 200) {
+      const json = await res.json();
+      return { json, api, num };
     }
+
+    this.error(res.status, res.statusText);
+  }
 </script>
 
 <script>
-    import { goto } from "@sapper/app";
-    import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
 
-    import { voted } from "../../stores/voted";
-    import { getVotedIds } from "../../api/local";
-    import { post } from "../../api/remote";
+  import { voted } from "../../stores/voted";
+  import { getVotedIds } from "../../api/local";
 
-    import Ranking from "../../components/Ranking.svelte";
-    import RankHeader from "../../components/RankHeader.svelte";
-    import RankFooter from "../../components/RankFooter.svelte";
+  import Ranking from "../../components/Ranking.svelte";
 
-    export let json;
-    export let num;
-    export let api;
+  export let json;
+  export let num;
+  export let api;
+  export let lastItems = null;
 
-    onMount(() => {
-        // get the list of ids we've voted up
-        voted.addIds(getVotedIds(json.items));
-    });
+  onMount(() => {
+    // get the list of ids we've voted up
+    voted.addIds(getVotedIds(json.items));
+    lastItems = json.items;
+  });
 
-    const onVote = async (which) => {
-        voted.addVote(which);
-        post(`${api}/vote`, { id: which });
-    };
-
-    const onUnvote = async (which) => {
-        voted.removeVote(which);
-        post(`${api}/unvote`, { id: which });
-    };
+  afterUpdate(() => {
+    if (JSON.stringify(json.items) !== JSON.stringify(lastItems)) {
+      voted.addIds(getVotedIds(json.items));
+      lastItems = json.items;
+    }
+  });
 </script>
 
 <svelte:head>
-    <title>Index</title>
+  <title>Underused</title>
 </svelte:head>
 
-<Ranking>
-    <span slot="header">
-        <RankHeader addFunc={() => goto("/underused/add/")}/>
-    </span>
-    <span slot="ranking">
-        <p>Underused words go here</p>
-        <!-- {#each json.items as item}
-            <div>
-                {#if $voted.includes(item._id)}
-                <span on:click={() => onUnvote(item._id)}>▲</span>
-                {:else}
-                <span on:click={() => onVote(item._id)}>△</span>
-                {/if}
-             {item.content}
-            </div>
-        {/each} -->
-    </span>
-    <span slot="footer">
-        <RankFooter nextFunc={() => goto(`/underused/?page=${parseInt(num) +
-        1}`)} prevFunc={num > 0 ? () => goto(`/underused/?page=${parseInt(num) -
-        1}`) : null} random={() => goto("/underused/random")} />
-    </span>
-</Ranking>
+<Ranking type="underused" {json} {num} {api} />
