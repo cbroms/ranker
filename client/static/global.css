@@ -23,11 +23,18 @@ body {
 button {
 	box-sizing: border-box;
 	background-color: inherit;
+	height: 50px;
 	padding: 10px;
 	font-size: 1rem;
 	font-family: Virtue, sans-serif;
-	border: 1px solid black;
+	border: 1px solid #3f3f3f;
+	color: #3f3f3f;
 	cursor: pointer;
+}
+
+button:hover {
+	background-color:#3f3f3f;
+	color: white;
 }
 
 input {
@@ -36,7 +43,7 @@ input {
 	padding: 10px;
 	font-size: 1rem;
 	font-family: Virtue, sans-serif;
-	border: 1px solid black;
+	border: 1px solid #3f3f3f;
 }
 
 select {

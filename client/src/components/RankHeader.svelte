@@ -6,8 +6,8 @@
 </script>
 
 <span class="header">
-  <h1>Phrases we use <RankVariantSelector {overused} /></h1>
-  <button on:click={addFunc}>+ Add a phrase</button>
+  <h1>Phrases we hear <RankVariantSelector {overused} /></h1>
+  <button class:overused on:click={addFunc}>+ Add a phrase</button>
 </span>
 
 <style>
@@ -19,5 +19,14 @@
   button {
     border: 1px solid white;
     color: white;
+  }
+
+  .overused:hover {
+    color: #d35b5b;
+  }
+
+  button:hover {
+    color: #79b95c;
+    background-color: white;
   }
 </style>

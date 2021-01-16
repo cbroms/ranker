@@ -39,6 +39,7 @@
         <div
           class="item"
           class:selected={$voted.includes(item._id)}
+          class:overused-selected={type === "overused"}
           class:first={i === 0 && num === 0}>
           <div class="item-vote">
             {#if $voted.includes(item._id)}
@@ -125,6 +126,10 @@
   }
 
   .selected {
+    color: #79b95c;
+  }
+
+  .selected.overused-selected {
     color: #d35b5b;
   }
 

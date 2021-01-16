@@ -28,7 +28,7 @@
   <main>
     <div>
       {#if added}
-        <p>Added "{content}" to the list.</p>
+        <p class="success">Added "{content}" to the list.</p>
       {:else}
         <input
           bind:value={content}
@@ -59,6 +59,10 @@
 <style>
   .error {
     color: #d35b5b;
+  }
+
+  .success {
+    color: #79b95c;
   }
 
   .primary {
