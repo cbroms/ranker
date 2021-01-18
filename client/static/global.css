@@ -1,55 +1,55 @@
 @font-face {
-	font-family: Virtue;
-	src: url(virtue.ttf);
+  font-family: Virtue;
+  src: url(virtue.ttf);
 }
 
 body {
-	font-size: 16px;
-	font-family: Virtue, sans-serif;
-	margin: 0;
-	color: #3f3f3f;
-	overflow-x: hidden;
+  font-size: 16px;
+  font-family: Virtue, sans-serif;
+  margin: 0;
+  color: #3f3f3f;
+  overflow-x: hidden;
 }
 
 #sapper {
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #f3f2f1;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f2f1;
 }
 
 button {
-	box-sizing: border-box;
-	background-color: inherit;
-	height: 50px;
-	padding: 10px;
-	font-size: 1rem;
-	font-family: Virtue, sans-serif;
-	border: 1px solid #3f3f3f;
-	color: #3f3f3f;
-	cursor: pointer;
+  box-sizing: border-box;
+  background-color: inherit;
+  min-height: 50px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: Virtue, sans-serif;
+  border: 1px solid #3f3f3f;
+  color: #3f3f3f;
+  cursor: pointer;
 }
 
 button:hover {
-	background-color:#3f3f3f;
-	color: white;
+  background-color: #3f3f3f;
+  color: white;
 }
 
 input {
-	box-sizing: border-box;
-	background-color: inherit;
-	padding: 10px;
-	font-size: 1rem;
-	font-family: Virtue, sans-serif;
-	border: 1px solid #3f3f3f;
+  box-sizing: border-box;
+  background-color: inherit;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: Virtue, sans-serif;
+  border: 1px solid #3f3f3f;
 }
 
 select {
-	font-family: Virtue, sans-serif;
+  font-family: Virtue, sans-serif;
 }
 
 h1 {
-	margin: 5px 0;
+  margin: 5px 0;
 }

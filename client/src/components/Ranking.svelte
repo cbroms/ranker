@@ -47,13 +47,15 @@
                 on:click={() => onUnvote(item._id)}
                 class="voted vote-box"
                 title={`remove your vote for the phrase "${item.content}"`}
-                >✓</span>
+                >▣</span>
             {:else}
               <span
                 on:click={() => onVote(item._id)}
                 class="unvoted vote-box"
-                title={`add a vote for the phrase "${item.content}"`} />
+                title={`add a vote for the phrase "${item.content}"`}>□</span>
             {/if}
+            <span class="vote-number"
+              >{$voted.includes(item._id) ? item.votes + 1 : item.votes}</span>
           </div>
           <div class="item-content">{item.content}</div>
         </div>
@@ -88,6 +90,7 @@
     grid-column: 1 / 1;
     grid-row: 2 / 3;
     border: 1px solid black;
+    border-bottom: none;
     background-color: white;
     padding: 20px;
   }
@@ -120,9 +123,12 @@
   }
 
   .item-vote {
-    cursor: pointer;
-    margin-right: 50px;
-    width: 23px;
+    margin-right: 25px;
+    min-width: 80px;
+  }
+
+  .item-content {
+    align-self: flex-end;
   }
 
   .selected {
@@ -133,17 +139,15 @@
     color: #d35b5b;
   }
 
-  .vote-box {
-    box-sizing: border-box;
-    border: 1px solid;
-    width: 23px;
-    height: 23px;
-    display: inline-block;
+  .vote-number {
+    font-size: 12px;
+    margin-left: 20px;
   }
 
-  .voted {
-    line-height: 24px;
+  .vote-box {
+    cursor: pointer;
     font-family: monospace;
-    font-size: 40px;
+    font-size: 26px;
+    align-self: center;
   }
 </style>
