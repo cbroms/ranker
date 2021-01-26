@@ -1,5 +1,6 @@
 <script>
   import { goto } from "@sapper/app";
+  import { flip } from "svelte/animate";
 
   import { voted } from "../stores/voted";
   import { post } from "../api/remote";
@@ -13,14 +14,22 @@
   export let num;
   export let api;
 
-  const onVote = async (which) => {
+  let tempVotes = {};
+
+  const onVote = async (which, i) => {
     await post(`${api}/vote?rankType=${type}`, { id: which });
     voted.addVote(which);
+    tempVotes = { ...tempVotes, [which]: 1 };
+    json.items[i].votes += tempVotes[which];
+    json = json;
   };
 
-  const onUnvote = async (which) => {
+  const onUnvote = async (which, i) => {
     await post(`${api}/unvote?rankType=${type}`, { id: which });
     voted.removeVote(which);
+    tempVotes = { ...tempVotes, [which]: -1 };
+    json.items[i].votes += tempVotes[which];
+    json = json;
   };
 </script>
 
@@ -35,28 +44,26 @@
       {#if json.items.length === 0}
         <p>No phrases yet!</p>
       {/if}
-      {#each json.items as item, i}
+      {#each json.items.sort((a, b) => b.votes - a.votes) as item, i (item._id)}
         <div
           class="item"
           class:selected={$voted.includes(item._id)}
           class:overused-selected={type === "overused"}
-          class:first={i === 0 && num === 0}>
-          <div class="item-vote">
-            {#if $voted.includes(item._id)}
-              <span
-                on:click={() => onUnvote(item._id)}
-                class="voted vote-box"
-                title={`remove your vote for the phrase "${item.content}"`}
-                >▣</span>
-            {:else}
-              <span
-                on:click={() => onVote(item._id)}
-                class="unvoted vote-box"
-                title={`add a vote for the phrase "${item.content}"`}>□</span>
-            {/if}
-            <span class="vote-number"
-              >{$voted.includes(item._id) ? item.votes + 1 : item.votes}</span>
-          </div>
+          class:first={i === 0 && num === 0}
+          animate:flip>
+          {#if $voted.includes(item._id)}
+            <span
+              on:click={() => onUnvote(item._id, i)}
+              class="voted vote-box"
+              title={`remove your vote for the phrase "${item.content}"`}
+              >▣</span>
+          {:else}
+            <span
+              on:click={() => onVote(item._id, i)}
+              class="unvoted vote-box"
+              title={`add a vote for the phrase "${item.content}"`}>□</span>
+          {/if}
+          <span class="vote-number">{item.votes}</span>
           <div class="item-content">{item.content}</div>
         </div>
       {/each}
@@ -113,8 +120,10 @@
   }
   .item {
     display: flex;
+    align-items: flex-end;
     width: 100%;
     margin: 10px;
+    min-height: 30px;
   }
 
   .first {
@@ -122,10 +131,10 @@
     margin: 20px 10px;
   }
 
-  .item-vote {
+  /* .item-vote {
     margin-right: 25px;
     min-width: 80px;
-  }
+  } */
 
   .item-content {
     align-self: flex-end;
@@ -141,13 +150,16 @@
 
   .vote-number {
     font-size: 12px;
-    margin-left: 20px;
+    line-height: 26px;
+    width: 70px;
   }
 
   .vote-box {
     cursor: pointer;
     font-family: monospace;
     font-size: 26px;
-    align-self: center;
+    text-align: center;
+    width: 40px;
+    margin-right: 15px;
   }
 </style>

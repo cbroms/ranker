@@ -132,14 +132,14 @@ async function run() {
         try {
             const id = req.body.id;
 
-            const obj = req.collection.findOne({_id: ObjectId(id)});
+            const obj = await req.collection.findOne({ _id: ObjectId(id) });
             if (obj.votes > 0) {
                 await req.collection.findOneAndUpdate(
                     { _id: ObjectId(id) },
                     { $inc: { votes: -1 } }
                 );
             }
-           
+
         } catch {
             // fail silently
             send(res, 200);
