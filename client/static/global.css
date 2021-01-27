@@ -53,3 +53,7 @@ select {
 h1 {
   margin: 5px 0;
 }
+
+.primary {
+  border: 4px double;
+}

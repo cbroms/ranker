@@ -5,7 +5,7 @@
 </script>
 
 <span class="footer">
-  <button class="random" on:click={randomFunc}>Random phrase</button>
+  <button class="random" on:click={randomFunc}>Random selection</button>
   <span class="navigation">
     <button on:click={prevFunc} class="previous" disabled={prevFunc === null}>
       &lsaquo; Prev page

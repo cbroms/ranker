@@ -1,15 +1,15 @@
 <script context="module">
   export async function preload(page, session) {
     // this is the results page that's been paginated, so we have a num parameter
-    const num = parseInt(page.query.page || 0);
+    const pageNum = parseInt(page.query.page || 0);
     const api = session.api;
 
     // get that page's results
-    const res = await this.fetch(`${api}/ranking/${num}?rankType=overused`);
+    const res = await this.fetch(`${api}/ranking/${pageNum}?rankType=overused`);
 
     if (res.status === 200) {
       const json = await res.json();
-      return { json, api, num };
+      return { json, api, pageNum };
     }
 
     this.error(res.status, res.statusText);
@@ -25,7 +25,7 @@
   import Ranking from "../../components/Ranking.svelte";
 
   export let json;
-  export let num;
+  export let pageNum;
   export let api;
   export let lastItems = null;
 
@@ -47,4 +47,4 @@
   <title>Overused</title>
 </svelte:head>
 
-<Ranking type="overused" {json} {num} {api} />
+<Ranking type="overused" {json} {pageNum} {api} />

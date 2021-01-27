@@ -51,6 +51,7 @@
       <button class="primary" on:click={() => goto(`/${type}/`)}
         >Return to ranking</button>
     {:else}
+      <button on:click={() => goto(`/${type}/`)}>Return to ranking</button>
       <button class="primary" on:click={onSubmit}>Add phrase</button>
     {/if}
   </nav>
@@ -63,10 +64,6 @@
 
   .success {
     color: #79b95c;
-  }
-
-  .primary {
-    border: 4px double;
   }
 
   .overused {
@@ -114,7 +111,8 @@
   }
 
   input:focus {
-    border: 4px double;
+    background-color: #3f3f3f;
+    color: #f3f2f1;
     outline: none;
   }
 

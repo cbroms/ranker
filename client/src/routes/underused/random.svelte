@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload(page, session) {
     const api = session.api;
-    const res = await this.fetch(`${api}/sample?rankType=overused`);
+    const res = await this.fetch(`${api}/sample?rankType=underused`);
 
     if (res.status === 200) {
       const json = await res.json();
@@ -32,4 +32,4 @@
   <title>Random</title>
 </svelte:head>
 
-<Random type="overused" {json} {api} />
+<Random type="underused" {json} {api} />

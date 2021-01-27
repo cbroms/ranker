@@ -48,12 +48,14 @@ async function run() {
 
     // get two random entries
     app.get("/sample", async (req, res) => {
-        let thing1 = { _id: null };
-        let thing2 = { _id: null };
 
+        const maxSamples = 5;
+        const resultsArr = []
+        
+        let results = {}
         let tries = 0;
 
-        // try to get two random things from the collection
+        // try to get a set of random things from the collection
         // we may have to try a few times since mongo's $sample can return the
         // same record multiple times
         while (tries < 10) {
@@ -61,14 +63,19 @@ async function run() {
                 .aggregate([{ $sample: { size: 1 } }])
                 .toArray();
 
-            if (thing1._id === null) thing1 = sample[0];
-            else thing2 = sample[0];
+            if (!Object.keys(results).includes(sample[0]._id)) {
+                results[sample[0]._id] = sample[0]
+            }
 
-            if (thing1._id !== thing2._id && thing2._id !== null) break;
+            if (Object.keys(results).length === maxSamples) break;
 
             tries++;
         }
-        res.end(JSON.stringify({ thing1, thing2 }));
+
+        for (const id in results) {
+            resultsArr.push(results[id])
+        }
+        res.end(JSON.stringify({items: resultsArr}));
     });
 
     // get the latest ranking, paginated

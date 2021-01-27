@@ -5,58 +5,43 @@
   import { voted } from "../stores/voted";
 
   import Panel from "./Panel.svelte";
+  import ItemRow from "./ItemRow.svelte";
 
   export let type;
   export let json;
   export let api;
-  export let redirect = false;
 
-  const handleComplete = () => {
-    if (redirect) goto(`${type}`);
-    else window.location.reload();
-  };
-
-  const onClick = async (which) => {
-    voted.addVote(which);
+  const onVote = async (which, i) => {
     await post(`${api}/vote?rankType=${type}`, { id: which });
-    handleComplete();
+    voted.addVote(which);
   };
 
-  const onNeither = async () => {
-    handleComplete();
-  };
-
-  const onBoth = async () => {
-    voted.addVote(json.thing1._id);
-    voted.addVote(json.thing2._id);
-    await post(`${api}/vote?rankType=${type}`, { id: json.thing1._id });
-    await post(`${api}/vote?rankType=${type}`, { id: json.thing2._id });
-    handleComplete();
+  const onUnvote = async (which, i) => {
+    await post(`${api}/unvote?rankType=${type}`, { id: which });
+    voted.removeVote(which);
   };
 </script>
 
 <Panel>
   <header class:overused={type === "overused"}>
     <h1>
-      Which phrase do you hear too {type === "overused" ? "much" : "little"}?
+      Which phrases do you hear too {type === "overused" ? "much" : "little"}?
     </h1>
   </header>
 
   <main>
     <div class="options">
-      <div>
-        <button on:click={() => onClick(json.thing1._id)}
-          >{json.thing1.content}</button>
-      </div>
-      <div>
-        <button on:click={() => onClick(json.thing2._id)}
-          >{json.thing2.content}</button>
-      </div>
+      {#each json.items as item, i (item._id)}
+        <div class="item">
+          <ItemRow {item} {i} {type} {onVote} {onUnvote} />
+        </div>
+      {/each}
     </div>
-
-    <button on:click={onBoth}>Both</button>
-    <button on:click={onNeither}>Neither</button>
   </main>
+  <nav>
+    <button class="primary" on:click={() => goto(`/${type}/`)}
+      >Continue to ranking</button>
+  </nav>
 </Panel>
 
 <style>
@@ -76,8 +61,9 @@
 
   main {
     grid-column: 1 / 1;
-    grid-row: 2 / 4;
+    grid-row: 2 / 3;
     border: 1px solid black;
+    border-bottom: none;
     background-color: white;
     padding: 20px;
   }
@@ -86,16 +72,18 @@
     margin-bottom: 15px;
   }
 
-  main > button {
-    margin-right: 15px;
-  }
-
   .options {
     margin: 40px 0;
   }
 
-  div > button {
-    width: 100%;
-    font-size: 1.5rem;
+  nav {
+    grid-column: 1 / 1;
+    grid-row: 3 / 4;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    border-top: none;
+    display: flex;
+    justify-content: flex-end;
   }
 </style>
