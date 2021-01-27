@@ -42,7 +42,7 @@
     position: absolute;
     right: 1px;
     padding: 5px 30px;
-    min-height: 39px;
+    min-height: 38px;
     border: none;
     color: grey;
   }

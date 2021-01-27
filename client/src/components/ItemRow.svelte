@@ -51,7 +51,7 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
-    margin: 10px;
+    margin: 5px 10px;
     min-height: 30px;
     cursor: pointer;
   }

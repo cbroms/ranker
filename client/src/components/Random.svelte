@@ -83,6 +83,7 @@
     padding: 20px;
     border: 1px solid black;
     border-top: none;
+    border-bottom: none;
     display: flex;
     justify-content: flex-end;
   }

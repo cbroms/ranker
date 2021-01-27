@@ -109,7 +109,7 @@
   .items {
     display: flex;
     flex-wrap: wrap;
-    height: 510px;
+    height: 430px;
     align-items: flex-start;
     align-content: flex-start;
   }
