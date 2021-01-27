@@ -23,7 +23,7 @@
   on:click={handleClick}
   class="item-row"
   class:selected={$voted.includes(item._id)}
-  class:overused-selected={type === "overused"}
+  class:overused={type === "overused"}
   class:first={i === 0 && pageNum === 0 && includeVotes}>
   {#if $voted.includes(item._id)}
     <span
@@ -56,6 +56,14 @@
     cursor: pointer;
   }
 
+  .item-row:hover {
+    background-color: #79b95c21;
+  }
+
+  .item-row.overused:hover {
+    background-color: #d35b5b21;
+  }
+
   .first {
     font-size: 1.65rem;
     margin: 20px 10px;
@@ -68,10 +76,12 @@
 
   .selected {
     color: #79b95c;
+    background-color: #79b95c21;
   }
 
-  .selected.overused-selected {
+  .selected.overused {
     color: #d35b5b;
+    background-color: #d35b5b21;
   }
 
   .vote-number {

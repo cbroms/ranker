@@ -103,6 +103,7 @@
     padding: 20px;
     border: 1px solid black;
     border-top: none;
+    border-bottom: none;
   }
 
   .items {
