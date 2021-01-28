@@ -1,5 +1,4 @@
 <script>
-  import { goto } from "@sapper/app";
   import { flip } from "svelte/animate";
 
   import { voted } from "../stores/voted";
@@ -36,9 +35,7 @@
 
 <Panel>
   <header class:overused={type === "overused"}>
-    <RankHeader
-      overused={type == "overused"}
-      addFunc={() => goto(`/${type}/add/`)} />
+    <RankHeader overused={type == "overused"} addPage={`/${type}/add/`} />
   </header>
   <main>
     <div class="items">
@@ -61,13 +58,9 @@
   </main>
   <nav>
     <RankFooter
-      nextFunc={json.nextPage
-        ? () => goto(`/${type}/?page=${pageNum + 1}`)
-        : null}
-      prevFunc={pageNum > 0
-        ? () => goto(`/${type}/?page=${pageNum - 1}`)
-        : null}
-      randomFunc={() => goto(`${type}/random`)} />
+      nextPage={json.nextPage ? `/${type}/?page=${pageNum + 1}` : ""}
+      prevPage={pageNum > 0 ? `/${type}/?page=${pageNum - 1}` : ""}
+      randomPage={`${type}/random/`} />
   </nav>
 </Panel>
 

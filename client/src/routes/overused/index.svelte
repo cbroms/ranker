@@ -44,7 +44,32 @@
 </script>
 
 <svelte:head>
-  <title>Overused</title>
+  <link rel="canonical" href="https://phraseranker.com/overused/" />
+  <title>Overused Phrases Ranking — PhraseRanker Pro</title>
+  <meta name="title" content="Overused Phrases Ranking — PhraseRanker Pro" />
+  <meta
+    name="description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://phraseranker.com/overused/" />
+  <meta
+    property="og:title"
+    content="Overused Phrases Ranking — PhraseRanker Pro" />
+  <meta
+    property="og:description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+  <meta property="og:image" content="https://phraseranker.com/cover.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://phraseranker.com/overused/" />
+  <meta
+    property="twitter:title"
+    content="Overused Phrases Ranking — PhraseRanker Pro" />
+  <meta
+    property="twitter:description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+  <meta property="twitter:image" content="https://phraseranker.com/cover.png" />
 </svelte:head>
 
 <Ranking type="overused" {json} {pageNum} {api} />

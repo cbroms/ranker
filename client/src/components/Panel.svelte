@@ -1,12 +1,10 @@
-<script>
-  import { goto } from "@sapper/app";
-</script>
-
 <div class="panel">
   <slot />
   <footer class="footer">
     <div class="footer-info">PhraseRanker Pro</div>
-    <button class="about" on:click={() => goto("/info/")}>?</button>
+    <a href="/info/">
+      <button class="about">?</button>
+    </a>
   </footer>
 </div>
 

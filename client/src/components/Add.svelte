@@ -13,6 +13,7 @@
 
   const onSubmit = async () => {
     if (content !== "") {
+      content = content.trim();
       await post(`${api}/new?rankType=${type}`, { content: content });
       added = true;
     } else {
@@ -28,7 +29,7 @@
   <main>
     <div>
       {#if added}
-        <p class="success">Added "{content}" to the list.</p>
+        <p class="success">Added &ldquo;{content}&rdquo; to the list.</p>
       {:else}
         <input
           bind:value={content}
@@ -48,10 +49,9 @@
           content = "";
           added = false;
         }}>Add another phrase</button>
-      <button class="primary" on:click={() => goto(`/${type}/`)}
-        >Return to ranking</button>
+      <a href="/{type}/"> <button class="primary">Return to ranking</button></a>
     {:else}
-      <button on:click={() => goto(`/${type}/`)}>Return to ranking</button>
+      <a href="/{type}/"> <button>Return to ranking</button></a>
       <button class="primary" on:click={onSubmit}>Add phrase</button>
     {/if}
   </nav>
@@ -95,6 +95,7 @@
     grid-row: 3 / 4;
     border: 1px solid black;
     border-top: none;
+    border-bottom: none;
     background-color: white;
 
     display: flex;

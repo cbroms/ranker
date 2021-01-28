@@ -1,6 +1,4 @@
 <script>
-  import { goto } from "@sapper/app";
-
   import { post } from "../api/remote";
   import { voted } from "../stores/voted";
 
@@ -39,8 +37,7 @@
     </div>
   </main>
   <nav>
-    <button class="primary" on:click={() => goto(`/${type}/`)}
-      >Continue to ranking</button>
+    <a href="/{type}/"> <button class="primary">Continue to ranking</button></a>
   </nav>
 </Panel>
 

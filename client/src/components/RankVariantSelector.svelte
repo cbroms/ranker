@@ -32,6 +32,7 @@
 
 <style>
   select {
+    cursor: pointer;
     font-size: inherit;
     -webkit-appearance: none;
     -moz-appearance: none;

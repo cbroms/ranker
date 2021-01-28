@@ -93,7 +93,7 @@
   .vote-box {
     font-family: monospace;
     font-size: 26px;
-    line-height: 22px;
+    line-height: 30px;
     text-align: center;
     min-width: 30px;
     margin-right: 15px;

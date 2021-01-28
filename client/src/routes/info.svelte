@@ -9,10 +9,10 @@
   <main>
     <h2>What is PhraseRanker Pro?</h2>
     <p>
-      There are certain phrases we hear ad nauseum, and others that we just
-      don't hear very much at all. PhraseRanker Pro is a webpage that collects
-      these under and overused phrases from visitors and ranks them according to
-      the number of votes each receives.
+      There are certain phrases we hear <em>ad nauseum</em>, and others that we
+      just don't hear very much at all. PhraseRanker Pro is a webpage that
+      collects these under and overused phrases from visitors and ranks them
+      according to the number of votes each receives.
     </p>
     <h2>How is PhraseRanker Pro Constructed?</h2>
     <p>
@@ -29,11 +29,37 @@
     <h2>Other PhraseRanker Pro Queries</h2>
     <p>
       Questions? Concerns? Comments? Direct any correspondence to <a
-        href="mailto:webmaster@phraserankerpro.net"
-        >webmaster@phraserankerpro.net</a>
+        href="mailto:webmaster@phraseranker.com">webmaster@phraseranker.com</a>
     </p>
+    <a href="/overused/"><button>Overused ranking</button></a>
+    <a href="/underused"><button>Underused ranking</button></a>
   </main>
 </Panel>
+
+<svelte:head>
+  <link rel="canonical" href="https://phraseranker.com/info/" />
+  <title>PhraseRanker Pro</title>
+  <meta name="title" content="PhraseRanker Pro" />
+  <meta
+    name="description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://phraseranker.com/info/" />
+  <meta property="og:title" content="PhraseRanker Pro" />
+  <meta
+    property="og:description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+  <meta property="og:image" content="https://phraseranker.com/cover.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://phraseranker.com/info/" />
+  <meta property="twitter:title" content="PhraseRanker Pro" />
+  <meta
+    property="twitter:description"
+    content="Sometimes there are phrases we all hear much too often. Vote on the phrases you're tired of hearing everyday. Submit your own phrases to the ranking." />
+  <meta property="twitter:image" content="https://phraseranker.com/cover.png" />
+</svelte:head>
 
 <style>
   header {
@@ -54,5 +80,9 @@
     border-bottom: none;
     background-color: white;
     padding: 20px;
+  }
+
+  h2 {
+    margin-top: 40px;
   }
 </style>

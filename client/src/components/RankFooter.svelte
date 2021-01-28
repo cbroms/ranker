@@ -1,18 +1,24 @@
 <script>
-  export let nextFunc = null;
-  export let prevFunc = null;
-  export let randomFunc = () => {};
+  export let nextPage = "";
+  export let prevPage = "";
+  export let randomPage = "";
 </script>
 
 <span class="footer">
-  <button class="random" on:click={randomFunc}>Random selection</button>
-  <span class="navigation">
-    <button on:click={prevFunc} class="previous" disabled={prevFunc === null}>
-      &lsaquo; Prev page
-    </button>
+  <a href={randomPage}>
+    <button class="random">Random selection</button>
+  </a>
 
-    <button on:click={nextFunc} disabled={nextFunc === null}
-      >Next page &rsaquo;</button>
+  <span class="navigation">
+    <a href={prevPage === "" ? null : prevPage}>
+      <button class="previous" disabled={prevPage === ""}>
+        &lsaquo; Prev page
+      </button>
+    </a>
+
+    <a href={nextPage === "" ? null : nextPage}>
+      <button disabled={nextPage === ""}>Next page &rsaquo;</button>
+    </a>
   </span>
 </span>
 
