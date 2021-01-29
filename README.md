@@ -2,7 +2,7 @@
 
 Ranking phrases that are under and overused.
 
-The client is built with Sapper (Svelte) and the backend is a Polka (Node) server. The database is MongoDB.
+The client is built with Sapper (Svelte) and the backend is a Polka (Node) server. It uses MongoDB as a database.
 
 ## Development
 
@@ -30,3 +30,9 @@ npm run dev
 ```
 
 Note that you'll also need to create separate `.env` files in both directories as well, rather than at the repository root directory. `DB_CONN` and `CORS_ORIGINS` should be present in the `.env` file for the server, and `API_CONN` should be present in the client `.env` file.
+
+## Production 
+
+```
+docker-compose -f docker-compose.prod.yml up --build -d
+```
