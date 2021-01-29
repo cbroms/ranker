@@ -9,7 +9,6 @@ services:
     env_file:
       - .env
     working_dir: /client
-    network_mode: "host"
   server:
     build:
       context: .
