@@ -1,0 +1,21 @@
+version: "3"
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./client.prod.Dockerfile
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env
+    working_dir: /client
+    network_mode: "host"
+  server:
+    build:
+      context: .
+      dockerfile: ./server.prod.Dockerfile
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    working_dir: /server
