@@ -17,7 +17,7 @@
   let tempVotes = {};
 
   const onVote = async (which, i) => {
-    await post(`${api}/vote?rankType=${type}`, { id: which });
+    post(`${api}/vote?rankType=${type}`, { id: which });
     voted.addVote(which);
     tempVotes = { ...tempVotes, [which]: 1 };
     json.items[i].votes += tempVotes[which];
@@ -25,7 +25,7 @@
   };
 
   const onUnvote = async (which, i) => {
-    await post(`${api}/unvote?rankType=${type}`, { id: which });
+    post(`${api}/unvote?rankType=${type}`, { id: which });
     voted.removeVote(which);
     tempVotes = { ...tempVotes, [which]: -1 };
     json.items[i].votes += tempVotes[which];

@@ -14,6 +14,9 @@
       collects these under and overused phrases from visitors and ranks them
       according to the number of votes each receives.
     </p>
+    <a href="/overused/"><button class="overused">Overused ranking</button></a>
+    <a href="/underused"
+      ><button class="underused">Underused ranking</button></a>
     <h2>How is PhraseRanker Pro Constructed?</h2>
     <p>
       It is built with JavaScript, specifically <a href="https://svelte.dev"
@@ -31,8 +34,6 @@
       Questions? Concerns? Comments? Direct any correspondence to <a
         href="mailto:webmaster@phraseranker.com">webmaster@phraseranker.com</a>
     </p>
-    <a href="/overused/"><button>Overused ranking</button></a>
-    <a href="/underused"><button>Underused ranking</button></a>
   </main>
 </Panel>
 
@@ -82,7 +83,25 @@
     padding: 20px;
   }
 
-  h2 {
+  /* h2 {
     margin-top: 40px;
+  } */
+
+  button {
+    margin-right: 15px;
+  }
+
+  button:hover {
+    color: white;
+  }
+
+  .overused:hover {
+    background-color: #d35b5b;
+    border: 1px solid #d35b5b;
+  }
+
+  .underused:hover {
+    background-color: #79b95c;
+    border: 1px solid #79b95c;
   }
 </style>

@@ -1,22 +1,21 @@
 {
-  "name": "ranker-server",
-  "version": "0.0.1",
-  "description": "The backend for ranker.",
-  "repository": "https://github.com/cbroms/ranker.git",
-  "main": "server.js",
-  "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
-  },
-  "dependencies": {
-    "@polka/send-type": "^0.5.2",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "mongodb": "^3.6.3",
-    "polka": "^0.5.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "name": "ranker-server",
+    "version": "0.0.1",
+    "description": "The backend for ranker.",
+    "repository": "https://github.com/cbroms/ranker.git",
+    "main": "server.js",
+    "scripts": {
+        "dev": "nodemon src/server.js",
+        "start": "node src/server.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "mongodb": "^3.6.3",
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
 }

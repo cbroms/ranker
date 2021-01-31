@@ -1,8 +1,9 @@
 const { MongoClient, ObjectId } = require("mongodb");
 
 const dotenv = require("dotenv");
-const polka = require("polka");
-const send = require("@polka/send-type");
+// const polka = require("polka");
+const express = require("express");
+// const send = require("@polka/send-type");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -39,26 +40,24 @@ async function run() {
         next();
     };
 
-    const app = polka()
+    const app = express()
         .use(corsConfig)
         .use(bodyParser.json())
         .use(rankTypeMiddleware);
 
-    app.options("*", cors());
-
     // get two random entries
     app.get("/sample", async (req, res) => {
 
-        const maxSamples = 5;
+        const maxSamples = 10;
         const resultsArr = []
-        
+
         let results = {}
         let tries = 0;
 
         // try to get a set of random things from the collection
         // we may have to try a few times since mongo's $sample can return the
         // same record multiple times
-        while (tries < 10) {
+        while (tries < 20) {
             const sample = await req.collection
                 .aggregate([{ $sample: { size: 1 } }])
                 .toArray();
@@ -75,7 +74,7 @@ async function run() {
         for (const id in results) {
             resultsArr.push(results[id])
         }
-        res.end(JSON.stringify({items: resultsArr}));
+        res.json({ items: resultsArr });
     });
 
     // get the latest ranking, paginated
@@ -102,19 +101,15 @@ async function run() {
             const numPassed = 10 * req.params.page + 10;
 
             if (items.length === 0 && req.params.page > 0) {
-                send(res, 404, "That page doesn't exist");
+                res.status(404).send("That page doesn't exist")
             } else {
-                send(
-                    res,
-                    200,
-                    JSON.stringify({
-                        items,
-                        nextPage: count > numPassed,
-                    })
-                );
+                res.json({
+                    items,
+                    nextPage: count > numPassed,
+                })
             }
         } catch {
-            send(res, 500);
+            res.status(500).send()
         }
     });
 
@@ -129,9 +124,9 @@ async function run() {
             );
         } catch {
             // fail silently
-            send(res, 200);
+            res.status(200).send()
         }
-        send(res, 200);
+        res.status(200).send()
     });
 
     // remove a vote from an entry
@@ -149,9 +144,9 @@ async function run() {
 
         } catch {
             // fail silently
-            send(res, 200);
+            res.status(200).send()
         }
-        send(res, 200);
+        res.status(200).send()
     });
 
     // add an entry
@@ -164,16 +159,16 @@ async function run() {
             } else {
                 const result = await req.collection.insertOne({
                     content: content,
-                    votes: 0,
+                    votes: 1,
                 });
 
                 const id = result.insertedId;
 
                 // return the newly created item ID
-                send(res, 200, JSON.stringify({ _id: id }));
+                res.json({ _id: id })
             }
         } catch {
-            send(res, 500, "Something went wrong");
+            res.status(500).send()
         }
     });
 

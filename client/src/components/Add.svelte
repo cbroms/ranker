@@ -1,6 +1,6 @@
 <script>
   import { post } from "../api/remote";
-  import { goto } from "@sapper/app";
+  import { voted } from "../stores/voted";
 
   import Panel from "./Panel.svelte";
 
@@ -14,7 +14,10 @@
   const onSubmit = async () => {
     if (content !== "") {
       content = content.trim();
-      await post(`${api}/new?rankType=${type}`, { content: content });
+      const res = await post(`${api}/new?rankType=${type}`, {
+        content: content,
+      });
+      voted.addVote(res._id);
       added = true;
     } else {
       error = "Enter a phrase";

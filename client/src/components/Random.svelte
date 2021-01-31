@@ -10,12 +10,12 @@
   export let api;
 
   const onVote = async (which, i) => {
-    await post(`${api}/vote?rankType=${type}`, { id: which });
+    post(`${api}/vote?rankType=${type}`, { id: which });
     voted.addVote(which);
   };
 
   const onUnvote = async (which, i) => {
-    await post(`${api}/unvote?rankType=${type}`, { id: which });
+    post(`${api}/unvote?rankType=${type}`, { id: which });
     voted.removeVote(which);
   };
 </script>
@@ -30,13 +30,12 @@
   <main>
     <div class="options">
       {#each json.items as item, i (item._id)}
-        <div class="item">
-          <ItemRow {item} {i} {type} {onVote} {onUnvote} />
-        </div>
+        <ItemRow {item} {i} {type} {onVote} {onUnvote} />
       {/each}
     </div>
   </main>
   <nav>
+    <button on:click={() => window.location.reload()}>Random selection</button>
     <a href="/{type}/"> <button class="primary">Continue to ranking</button></a>
   </nav>
 </Panel>
@@ -82,6 +81,6 @@
     border-top: none;
     border-bottom: none;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 </style>

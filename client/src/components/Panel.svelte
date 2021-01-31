@@ -2,8 +2,8 @@
   <slot />
   <footer class="footer">
     <div class="footer-info">PhraseRanker Pro</div>
-    <a href="/info/">
-      <button class="about">?</button>
+    <a class="about" href="/info/">
+      <button>?</button>
     </a>
   </footer>
 </div>
@@ -39,13 +39,17 @@
     box-sizing: border-box;
     position: absolute;
     right: 1px;
+    background-color: white;
+  }
+
+  .about > button {
     padding: 5px 30px;
     min-height: 38px;
     border: none;
     color: grey;
   }
 
-  .about:hover {
+  .about > button:hover {
     color: white;
   }
 
