@@ -23,6 +23,9 @@ async function run() {
     const overusedCollection = database.collection("overused");
     const underusedCollection = database.collection("underused");
 
+    overusedCollection.createIndex({ content: "text" });
+    underusedCollection.createIndex({ content: "text" })
+
     const corsConfig = cors({
         origin: corsWhitelist,
     });
@@ -57,7 +60,7 @@ async function run() {
         // try to get a set of random things from the collection
         // we may have to try a few times since mongo's $sample can return the
         // same record multiple times
-        while (tries < 20) {
+        while (tries < 15) {
             const sample = await req.collection
                 .aggregate([{ $sample: { size: 1 } }])
                 .toArray();
@@ -153,19 +156,34 @@ async function run() {
     app.post("/new", async (req, res) => {
         try {
             const content = req.body.content;
+            const force = req.body.forceAdd
 
             if (content === "") {
-                throw new Error("New item has no content!");
+                res.status(400).send()
             } else {
-                const result = await req.collection.insertOne({
-                    content: content,
-                    votes: 1,
-                });
 
-                const id = result.insertedId;
+                if (!force) {
+                    // try to find an existing item 
+                    const searchResult = await req.collection.find(
+                        { $text: { $search: `"${content}"` } },
+                        { score: { $meta: "textScore" } }
+                    ).sort({ score: { $meta: "textScore" } }).toArray();
 
-                // return the newly created item ID
-                res.json({ _id: id })
+                    if (searchResult.length > 0) {
+                        // send back the results rather than adding the new content
+                        res.json({ items: searchResult })
+                    }
+                } else {
+                    const result = await req.collection.insertOne({
+                        content: content,
+                        votes: 1,
+                    });
+
+                    const id = result.insertedId;
+
+                    // return the newly created item ID
+                    res.json({ _id: id })
+                }
             }
         } catch {
             res.status(500).send()

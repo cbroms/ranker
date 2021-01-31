@@ -1,6 +1,7 @@
 @font-face {
   font-family: Virtue;
   src: url(virtue.ttf);
+  font-display: swap;
 }
 
 body {
@@ -44,10 +45,12 @@ input {
   font-size: 1rem;
   font-family: Virtue, sans-serif;
   border: 1px solid #3f3f3f;
+  border-radius: 0;
 }
 
 select {
   font-family: Virtue, sans-serif;
+  border-radius: 0;
 }
 
 h1 {
@@ -56,4 +59,8 @@ h1 {
 
 .primary {
   border: 4px double;
+}
+
+p {
+    max-width: 600px;
 }

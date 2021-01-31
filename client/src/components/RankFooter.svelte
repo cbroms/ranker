@@ -5,8 +5,8 @@
 </script>
 
 <span class="footer">
-  <a href={randomPage}>
-    <button class="random">Random selection</button>
+  <a href={randomPage} class="random">
+    <button>Random selection</button>
   </a>
 
   <span class="navigation">
@@ -41,10 +41,15 @@
 
     .random {
       order: 2;
+      margin-right: 0;
     }
   }
 
   .random {
+    margin-top: 15px;
+  }
+
+  .navigation {
     margin-top: 15px;
   }
 

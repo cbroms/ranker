@@ -36,11 +36,14 @@
   {/if}
   <span
     class="vote-number"
+    class:one={includeVotes && i + 1 + pageNum * 10 < 10}
+    class:ten={includeVotes && i + 1 + pageNum * 10 < 100}
+    class:hundred={includeVotes && i + 1 + pageNum * 10 < 100}
     title={includeVotes
       ? `${item.votes} vote${item.votes === 1 ? "" : "s"}`
       : null}>
     {#if includeVotes}
-      {i + 1 + pageNum * 10}
+      #{i + 1 + pageNum * 10}
     {/if}
   </span>
   <div class="item-content">{item.content}</div>
@@ -87,7 +90,16 @@
   .vote-number {
     font-size: 12px;
     line-height: 26px;
-    min-width: 40px;
+    min-width: 20px;
+  }
+
+  .one,
+  .ten {
+    min-width: 50px;
+  }
+
+  .hundred {
+    min-width: 60px;
   }
 
   .vote-box {

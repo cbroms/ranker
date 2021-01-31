@@ -10,16 +10,16 @@
     <h2>What is PhraseRanker Pro?</h2>
     <p>
       There are certain phrases we hear <em>ad nauseum</em>, and others that we
-      just don't hear very much at all. PhraseRanker Pro is a webpage that
-      collects these under and overused phrases from visitors and ranks them
-      according to the number of votes each receives.
+      just don't hear very much at all. So I built PhraseRanker Pro, a webpage
+      that collects these under and overused phrases from visitors and ranks
+      them according to the number of votes each receives.
     </p>
     <a href="/overused/"><button class="overused">Overused ranking</button></a>
     <a href="/underused"
       ><button class="underused">Underused ranking</button></a>
     <h2>How is PhraseRanker Pro Constructed?</h2>
     <p>
-      It is built with JavaScript, specifically <a href="https://svelte.dev"
+      It's built with JavaScript, specifically <a href="https://svelte.dev"
         >Svelte</a
       >, using the
       <a href="https://sapper.svelte.dev/">Sapper</a> application framework.
@@ -31,8 +31,9 @@
     </p>
     <h2>Other PhraseRanker Pro Queries</h2>
     <p>
-      Questions? Concerns? Comments? Direct any correspondence to <a
-        href="mailto:webmaster@phraseranker.com">webmaster@phraseranker.com</a>
+      Questions? Concerns? Comments? Suggestions? Direct any correspondence to
+      me at <a href="mailto:webmaster@phraseranker.com"
+        >webmaster@phraseranker.com</a>
     </p>
   </main>
 </Panel>
@@ -83,11 +84,8 @@
     padding: 20px;
   }
 
-  /* h2 {
-    margin-top: 40px;
-  } */
-
   button {
+    margin-bottom: 15px;
     margin-right: 15px;
   }
 

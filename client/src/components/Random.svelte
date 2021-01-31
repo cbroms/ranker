@@ -35,8 +35,10 @@
     </div>
   </main>
   <nav>
-    <button on:click={() => window.location.reload()}>Random selection</button>
-    <a href="/{type}/"> <button class="primary">Continue to ranking</button></a>
+    <button class="random" on:click={() => window.location.reload()}
+      >More random phrases</button>
+    <a href="/{type}/">
+      <button class="primary">Continue to ranking &rsaquo;</button></a>
   </nav>
 </Panel>
 
@@ -64,14 +66,6 @@
     padding: 20px;
   }
 
-  .options > div {
-    margin-bottom: 15px;
-  }
-
-  .options {
-    margin: 40px 0;
-  }
-
   nav {
     grid-column: 1 / 1;
     grid-row: 3 / 4;
@@ -82,5 +76,18 @@
     border-bottom: none;
     display: flex;
     justify-content: space-between;
+  }
+
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 430px;
+    height: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  .random {
+    margin-right: 15px;
   }
 </style>

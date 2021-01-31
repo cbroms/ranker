@@ -1,30 +1,21 @@
 <script>
-  import { goto } from "@sapper/app";
+  export let selectedOption;
 
-  export let overused = false;
-
-  const options = [
-    { text: "too much", id: 1 },
-    { text: "too little", id: 2 },
-  ];
+  export let options;
+  export let onChangedValue;
 
   let selected;
-
-  const changedValue = () => {
-    if (selected.id === 1) {
-      goto("/overused/");
-    } else {
-      goto("/underused/");
-    }
-  };
 </script>
 
-<select bind:value={selected} on:change={changedValue} on:blur={changedValue}>
+<select
+  bind:value={selected}
+  on:change={() => onChangedValue(selected)}
+  on:blur={() => onChangedValue(selected)}>
   {#each options as option}
     <option
       value={option}
-      selected={(option.id === 1 && overused) ||
-        (option.id === 2 && !overused)}>
+      selected={(option.id === 1 && selectedOption === 1) ||
+        (option.id === 2 && selectedOption === 2)}>
       {option.text}
     </option>
   {/each}

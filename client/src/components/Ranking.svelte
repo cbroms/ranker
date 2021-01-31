@@ -41,19 +41,20 @@
     <div class="items">
       {#if json.items.length === 0}
         <p>No phrases yet!</p>
+      {:else}
+        {#each json.items.sort((a, b) => b.votes - a.votes) as item, i (item._id)}
+          <div class="item" animate:flip={{ duration: 250 }}>
+            <ItemRow
+              {item}
+              {i}
+              {pageNum}
+              {type}
+              {onVote}
+              {onUnvote}
+              includeVotes="true" />
+          </div>
+        {/each}
       {/if}
-      {#each json.items.sort((a, b) => b.votes - a.votes) as item, i (item._id)}
-        <div class="item" animate:flip={{ duration: 250 }}>
-          <ItemRow
-            {item}
-            {i}
-            {pageNum}
-            {type}
-            {onVote}
-            {onUnvote}
-            includeVotes="true" />
-        </div>
-      {/each}
     </div>
   </main>
   <nav>
@@ -102,7 +103,8 @@
   .items {
     display: flex;
     flex-wrap: wrap;
-    height: 430px;
+    min-height: 430px;
+    height: 100%;
     align-items: flex-start;
     align-content: flex-start;
   }

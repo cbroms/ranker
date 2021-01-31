@@ -18,7 +18,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: auto 1fr auto 40px;
+    grid-template-rows: auto auto auto 40px;
   }
 
   .footer {
