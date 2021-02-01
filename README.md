@@ -2,15 +2,15 @@
 
 Ranking phrases that are under and overused.
 
-The client is built with Sapper (Svelte) and the backend is a Polka (Node) server. It uses MongoDB as a database.
+The client is built with Sapper (Svelte) and the backend is an Express (Node) server. It uses MongoDB as a database.
 
 ## Development
 
 Create a `.env` file that contains:
 
 ```
-DB_CONN= { your MongoDB connection string }
-CORS_ORIGINS=["http://localhost:3000", { any other origins you'd like to whitelist } ]
+DB_CONN= <your MongoDB connection string>
+CORS_ORIGINS=["http://localhost:3000", <any other origins you'd like to whitelist> ]
 API_CONN=http://localhost:5000
 ```
 
@@ -32,6 +32,8 @@ npm run dev
 Note that you'll also need to create separate `.env` files in both directories as well, rather than at the repository root directory. `DB_CONN` and `CORS_ORIGINS` should be present in the `.env` file for the server, and `API_CONN` should be present in the client `.env` file.
 
 ## Production 
+
+You can run the project in a production environment using the `docker-compose.prod.yml` file:
 
 ```
 docker-compose -f docker-compose.prod.yml up --build -d

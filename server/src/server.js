@@ -194,7 +194,7 @@ async function run() {
 
                     // return the newly created item ID
                     res.json({ _id: id })
-                } f
+                }
             }
         } catch {
             res.status(500).send()
