@@ -78,11 +78,6 @@
       {#if added}
         <p class="success">Added &ldquo;{content}&rdquo; to the list.</p>
       {:else}
-        <p>
-          What is <a href="https://en.wikipedia.org/wiki/Phrase">a phrase</a>?
-          It could be one word, could be five, as long as it's a self-contained
-          expression. You decide if it fits...
-        </p>
         <input
           bind:value={content}
           on:keypress={() => {

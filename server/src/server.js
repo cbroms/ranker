@@ -65,8 +65,10 @@ async function run() {
                 .aggregate([{ $sample: { size: 1 } }])
                 .toArray();
 
-            if (!Object.keys(results).includes(sample[0]._id)) {
+            if (sample.length > 0 && !Object.keys(results).includes(sample[0]._id)) {
                 results[sample[0]._id] = sample[0]
+            } else if (sample.length === 0) {
+                break;
             }
 
             if (Object.keys(results).length === maxSamples) break;
@@ -154,6 +156,9 @@ async function run() {
 
     // add an entry
     app.post("/new", async (req, res) => {
+
+        let foundSimilar = false;
+
         try {
             const content = req.body.content;
             const force = req.body.forceAdd
@@ -172,18 +177,24 @@ async function run() {
                     if (searchResult.length > 0) {
                         // send back the results rather than adding the new content
                         res.json({ items: searchResult })
+                        foundSimilar = true;
                     }
-                } else {
+                }
+
+                if (!foundSimilar) {
+
+                    // insert the new item 
                     const result = await req.collection.insertOne({
                         content: content,
                         votes: 1,
+                        createdAt: new Date().toISOString()
                     });
 
                     const id = result.insertedId;
 
                     // return the newly created item ID
                     res.json({ _id: id })
-                }
+                } f
             }
         } catch {
             res.status(500).send()
