@@ -29,12 +29,16 @@
         href="http://scootergraphics.com/virtue/index.html">Virtue</a
       >.
     </p>
-    <h2>Other PhraseRanker Pro Queries</h2>
+    <p>
+      <a href="https://futureland.tv/christian/twelve-websites/34595"
+        >Follow along</a> as PhraseRanker was built over the course of a month.
+    </p>
+    <!-- <h2>Other PhraseRanker Pro Queries</h2>
     <p>
       Questions? Concerns? Comments? Suggestions? Direct any correspondence to
       me at <a href="mailto:webmaster@phraseranker.com"
         >webmaster@phraseranker.com</a>
-    </p>
+    </p> -->
   </main>
 </Panel>
 

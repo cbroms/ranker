@@ -40,7 +40,7 @@
   <main>
     <div class="items">
       {#if json.items.length === 0}
-        <p>No phrases yet!</p>
+        <p>No phrases yet. <a href="/{type}/add/">Add one</a>!</p>
       {:else}
         {#each json.items.sort((a, b) => b.votes - a.votes) as item, i (item._id)}
           <div class="item" animate:flip={{ duration: 250 }}>

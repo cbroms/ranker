@@ -29,9 +29,16 @@
 
   <main>
     <div class="options">
-      {#each json.items as item, i (item._id)}
-        <ItemRow {item} {i} {type} {onVote} {onUnvote} />
-      {/each}
+      {#if json.items.length === 0}
+        <p>No phrases yet. <a href="/{type}/add/">Add one</a>!</p>
+      {:else}
+        <p class="instructions">
+          Select phrases to vote, or <a href="/{type}/">continue to ranking</a>
+        </p>
+        {#each json.items as item, i (item._id)}
+          <ItemRow {item} {i} {type} {onVote} {onUnvote} />
+        {/each}
+      {/if}
     </div>
   </main>
   <nav>
@@ -89,5 +96,9 @@
 
   .random {
     margin-right: 15px;
+  }
+
+  .instructions {
+    opacity: 0.8;
   }
 </style>

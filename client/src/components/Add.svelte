@@ -147,6 +147,7 @@
     border-bottom: none;
     background-color: white;
     padding: 20px;
+    min-height: 280px;
   }
 
   nav {

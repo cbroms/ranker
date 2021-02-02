@@ -24,15 +24,14 @@
   class="item-row"
   class:selected={$voted.includes(item._id)}
   class:overused={type === "overused"}
-  class:first={i === 0 && pageNum === 0 && includeVotes}>
+  class:first={i === 0 && pageNum === 0 && includeVotes}
+  title={`${
+    $voted.includes(item._id) ? "remove" : "add"
+  } a vote for the phrase "${item.content}"`}>
   {#if $voted.includes(item._id)}
-    <span
-      class="voted vote-box"
-      title={`remove your vote for the phrase "${item.content}"`}>▣</span>
+    <span class="voted vote-box">▣</span>
   {:else}
-    <span
-      class="unvoted vote-box"
-      title={`add a vote for the phrase "${item.content}"`}>□</span>
+    <span class="unvoted vote-box">□</span>
   {/if}
   <span
     class="vote-number"
@@ -46,7 +45,10 @@
       #{i + 1 + pageNum * 10}
     {/if}
   </span>
-  <div class="item-content">{item.content}</div>
+  <div class="item-content">
+    {item.content}
+    <!-- <span class="item-vote-prompt">Vote</span> -->
+  </div>
 </div>
 
 <style>
@@ -72,8 +74,19 @@
     margin: 20px 10px;
   }
 
+  /* .item-vote-prompt {
+    position: absolute;
+    right: 15px;
+    font-size: 12px;
+    display: none;
+  }
+
+  .item-row:hover .item-vote-prompt {
+    display: inline-block;
+  } */
+
   .item-content {
-    line-height: 26px;
+    line-height: 30px;
     min-height: 30px;
   }
 
@@ -88,8 +101,8 @@
   }
 
   .vote-number {
-    font-size: 12px;
-    line-height: 26px;
+    font-size: 14px;
+    line-height: 30px;
     min-width: 20px;
   }
 
@@ -105,7 +118,7 @@
   .vote-box {
     font-family: monospace;
     font-size: 26px;
-    line-height: 30px;
+    line-height: 26px;
     text-align: center;
     min-width: 30px;
     margin-right: 15px;

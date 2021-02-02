@@ -33,7 +33,7 @@
     background-position-x: 100%;
     background-position-y: 5px;
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
     color: white;
     padding-right: 1.5rem;
   }

@@ -30,21 +30,6 @@
     align-items: flex-end;
   }
 
-  @media (max-width: 460px) {
-    .footer {
-      justify-content: center;
-    }
-
-    .navigation {
-      order: 1;
-    }
-
-    .random {
-      order: 2;
-      margin-right: 0;
-    }
-  }
-
   .random {
     margin-top: 15px;
   }
@@ -61,6 +46,21 @@
     margin-right: 15px;
   }
 
+  @media (max-width: 460px) {
+    .footer {
+      justify-content: center;
+    }
+
+    .navigation {
+      order: 1;
+    }
+
+    .random {
+      order: 2;
+      margin-right: 0;
+    }
+  }
+
   button:disabled {
     color: grey;
     border-color: grey;
@@ -68,6 +68,6 @@
 
   button:disabled:hover {
     background-color: white;
-    cursor: default;
+    cursor: not-allowed;
   }
 </style>
